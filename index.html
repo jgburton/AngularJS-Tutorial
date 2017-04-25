@@ -65,18 +65,22 @@
 <body ng-app="app" ng-controller="MainController as main">
 <div class="container">
     <h1>{{main.title}}</h1>
+    <!--Search Bar-->
     <div class="input-group">
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-search"></span>
         </span>
         <input type="text" class="form-control" ng-model="main.searchInput">
     </div>
+    <!--List of Shows -->
     <h3>A list of TV shows</h3>
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="show in main.shows | filter:main.searchInput | orderBy:main.order.key:main.order.reverse"><span class="glyphicon glyphicon-star" ng-if="show.favorite"></span> {{show.title}} <span class="badge">{{show.year}}</span></li>
     </ul>
+    <!-- Order Choice -->
     <select class="form-control pull-right" ng-model="main.order" ng-options="order as order.title for order in main.orders"></select>
     <div class="clearfix"></div>
+    <!-- Add a new show, clears when refreshed-->
     <h3>Add a new TV Show</h3>
     <form name="main.addForm" class="form" ng-submit="main.addShow()">
         <div class="form-group">
